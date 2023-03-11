@@ -5,14 +5,15 @@
 </head>
 <body>
 <h1>Signup Result</h1>
-<%
-  String message = request.getParameter("message");
-  if (message != null && !message.isEmpty()) {
-    out.println("<p>" + message + "</p>");
-  } else {
-    out.println("<p>Signup was successful!</p>");
-  }
-%>
-<a href="login">Go back to Login Page</a>
+<p>Signup successful! Welcome, ${username}.</p>
+<p>Your information:</p>
+<ul>
+  <li>Username: ${username}</li>
+  <li>Password: ${password}</li>
+  <li>Phone Number: ${phone}</li>
+  <li>Email: ${email}</li>
+</ul>
+<a href="login">Back to the Login Page</a>
+
 </body>
 </html>

@@ -15,7 +15,7 @@
     <br>
 
     <label>Phone Number:</label>
-    <input type="phonenumber" name="Phone Number" required>
+    <input type="phone" name="phone" required>
     <br>
 
     <label>Email:</label>

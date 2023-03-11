@@ -20,27 +20,21 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if (isValidUser(username, password)) {
-            request.getSession().setAttribute("username", username);
-            response.sendRedirect("success.jsp");
+
+        if (username.equals("admin") && password.equals("admin")) {
+            // Set session attribute and redirect to home page
+            HttpSession session = request.getSession();
+            session.setAttribute("loggedInUser", username);
+            response.sendRedirect(request.getContextPath() + "/WEB-INF/jsp/home.jsp");
         } else {
-            request.setAttribute("error", "Invalid username or password");
-            request.getRequestDispatcher("/WEB-INF/jsp/loginResult.jsp")
-                    .forward(request, response);
+            // Set error message attribute and forward to login page
+            request.setAttribute("errorMessage", "Invalid username or password.");
+            request.getRequestDispatcher("/WEB-INF/jsp/loginResult.jsp").forward(request, response);
         }
     }
-
-    private boolean isValidUser(String username, String password) {
-        // Check if user exists in the database and password matches
-        // Return true if valid user, false otherwise
-        if (username == null || username.isEmpty()
-                || password == null || password.isEmpty()) {
-            return false;
-        }
-        // User is valid if all checks pass
-        return true;
-
-    }
-
-
 }
+
+
+
+
+

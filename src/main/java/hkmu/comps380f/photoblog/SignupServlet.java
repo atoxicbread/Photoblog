@@ -20,20 +20,17 @@ public class SignupServlet extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String phone = request.getParameter("phone");
         String email = request.getParameter("email");
-        if (isValidUser(username, password, email)) {
-            // Save user to the database
-            response.sendRedirect("success.jsp");
-        } else {
-            request.setAttribute("error", "Invalid username or password or email");
-            request.getRequestDispatcher("/WEB-INF/jsp/signup.jsp").forward(request, response);
-        }
-    }
 
-    private boolean isValidUser(String username, String password, String email) {
-        // Check if user already exists in the database
-        // Return true if valid user, false otherwise
 
-        return false;
+        request.setAttribute("username", username);
+        request.setAttribute("password", password);
+        request.setAttribute("phone", phone);
+        request.setAttribute("email", email);
+
+        // Forward to the signup result page
+        request.getRequestDispatcher("/WEB-INF/jsp/signupResult.jsp")
+                .forward(request, response);
     }
 }
